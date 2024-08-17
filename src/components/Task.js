@@ -1,19 +1,18 @@
 import React from 'react';
 
-function Task({ tasks, onDelete }) {
-  
-  const displayTasks = tasks.map((task) => {
-    return (
-      <div className="task" key={task.text}>
-        <div className="label">{task.category}</div>
-        <div className="text">{task.text}</div>
-        <button className="delete" onClick={() => onDelete(task.text)}>
-          X
-        </button>
-      </div>
-    );
-  });
-  return <>{displayTasks}</>;
+function Task({ text, category, onDeleteTask }) {
+  function handleClick() {
+    onDeleteTask(text);
+  }
+  return (
+    <div className="task">
+      <div className="label">{category}</div>
+      <div className="text">{text}</div>
+      <button onClick={handleClick} className="delete">
+        X
+      </button>
+    </div>
+  );
 }
 
 export default Task;

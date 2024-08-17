@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 
-function NewTaskForm({ handleAddTask, categories }) {
+function NewTaskForm({ onTaskFormSubmit, categories }) {
   const [text, setText] = useState('');
   const [category, setCategory] = useState('Code');
 
-  const newTask = {text, category}
-  function onTaskFormSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    handleAddTask(newTask);
+    onTaskFormSubmit({ text, category });
     setText('');
     setCategory('Code');
   }
   return (
-    <form className="new-task-form" onSubmit={onTaskFormSubmit}>
+    <form className="new-task-form" onSubmit={handleSubmit}>
       <label>
         Details
         <input
           type="text"
           name="text"
+          value={text}
           onChange={(event) => setText(event.target.value)}
         />
       </label>
